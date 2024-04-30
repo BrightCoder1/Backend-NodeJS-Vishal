@@ -11,6 +11,6 @@ app.use("/api/auth", router);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`http://localhost:${PORT}`);
+    console.log(`http://localhost:${PORT}/api/auth/`);
   });
 });

@@ -50,6 +50,10 @@ userSchema.methods.generateToken =async function(){
     }
 }
 
+// password compare
+userSchema.methods.comparePassword = async function(password) {
+    return bcrypt.compare(password,this.password);
+}
 
 const User =new mongoose.model("User",userSchema);
 

@@ -11,8 +11,11 @@ const login = async (req, res) =>{
                 msg:"Invalid details"
             })
         }
-        console.log(userExists);
-        const user = await bcrypt.compare(password, userExists.password);
+        // console.log(userExists);
+        // const user = await bcrypt.compare(password,userExists.password);
+
+        const user = await userExists.comparePassword(password);
+
         if(user){
             res.status(200).json({
                 msg:"Login Successfull",
