@@ -1,6 +1,7 @@
 const User = require("../models/dataregister.model.js");
 const bcrypt = require("bcrypt");
 const login = async (req, res) =>{
+    
     try {
         const {email,password}= req.body;
 
@@ -28,8 +29,19 @@ const login = async (req, res) =>{
                 msg:"Invalid Email or Password"
             })
         }
-    } catch (error) {
-        res.status(500).json("internal server error")   
+    } catch (err) {
+        // res.status(500).json("internal server error")   
+        const status = 422;
+        const message ="Error in Login";
+        const extraDetails = err.error[0].message;
+
+        const error ={
+            status,
+            message,
+            extraDetails
+        }
+        console.log(error);
+        next(error);
     }
 };
 
